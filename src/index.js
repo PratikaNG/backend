@@ -10,6 +10,12 @@ nodemon -r dotenv/config --experimental-json-modules src/index.js
 we are doing this to bring consistency in the code while importing dotenv temporarily until the dotenv package brings the import syntax permanently into it.
 */
 connectDB()
+.then(()=>{
+    app.listen(process.env.PORT || 8000,()=>{
+        console.log(`Server is connected to the port ${process.env.PORT}`)
+    })
+    })
+.catch((error)=>{console.log("Mongo DB connection failed")})
 
 
 
