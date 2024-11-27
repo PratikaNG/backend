@@ -12,4 +12,12 @@ app.use(express.urlencoded({extended:true,limit:"20kb"}))
 app.use(express.static("public"))  //images, favicon and other static files
 app.use(cookieParser())
 
+
+// import routes
+import userRouter from "./routes/user.routes.js"
+
+
+// declaring routes
+app.use("/api/v1/users",userRouter)
+
 export default app
