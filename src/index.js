@@ -2,7 +2,7 @@ import dotenv from "dotenv"
 
 import connectDB from "./db/index.js";
 dotenv.config({
-    path:"./env"
+    path:"./.env"
 })
 /*now change the dev script to this
 nodemon -r dotenv/config --experimental-json-modules src/index.js

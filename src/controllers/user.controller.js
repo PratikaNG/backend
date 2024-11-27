@@ -25,7 +25,7 @@ if([fullName, email, username, password].some((field)=>field.trim() === "")){
 }
 
 // check if user already exists
-    const existingUser = User.findOne({
+    const existingUser = await User.findOne({
         $or : [{ username },{ email }]
     })
 
@@ -35,8 +35,14 @@ if([fullName, email, username, password].some((field)=>field.trim() === "")){
 
 // check images
 // req.files comes from multer, we will check the first object of avatar
+    console.log("req.files",req.files)
     const avatarLocalPath = req.files?.avatar[0]?.path;
-    const coverImageLocalPath = req.files?.avatart[0]?.path;
+    // const coverImageLocalPath = req.files?.coverImage[0]?.path;
+
+    let coverImageLocalPath
+    if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0 ){
+        coverImageLocalPath = req.files?.coverImage[0]?.path;
+    }
 
     if(!avatarLocalPath){ throw new ApiError(400, "Avatar is required")}
 
